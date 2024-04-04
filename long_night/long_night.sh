@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#Tutorial 
+#Tutorial
 
-echo "Please select starting class: 
+echo "Please select starting class:
 1 - Warrior
 2 - Hunter
 3 - Assassin
@@ -15,53 +15,53 @@ case $class in
 
 	1)
 		type="Warrior"
-		hp=15
-		strength=10
-		agility=4
+		hp=17
+		strength=12
+		agility=5
 		magic=1
 		;;
 	2)
 		type="Hunter"
-                hp=10
-                strength=7
-                agility=10
-                magic=3
+                hp=13
+                strength=9
+                agility=9
+                magic=4
                 ;;
 	3)
 		type="Assassin"
-                hp=10
-                strength=7
-                agility=8
-                magic=5
+                hp=12
+                strength=10
+                agility=7
+                magic=6
                 ;;
 	4)
 		type="Samurai"
-                hp=12
-                strength=11 
+                hp=14
+                strength=11
                 agility=7
-                magic=0
+                magic=3
                 ;;
 	5)
 		type="Mage"
-                hp=8
-                strength=5
-                agility=5
+                hp=11
+                strength=6
+                agility=6
                 magic=12
                 ;;
 esac
 
-echo "You have chosen the class $type. 
+echo "You have chosen the class $type.
 Your stats:
 HP: $hp
 STR: $strength
 AGL: $agility
 MAG: $magic"
 
-sleep 3
+sleep 4
 
 echo "You died"
 
-sleep 5
+sleep 4
 
 echo "or did you?"
 
@@ -76,12 +76,35 @@ read key
 if [[ $key == "y" ]]; then
 	echo "Key picked up."
 else
-	echo "You died after 13 hours and 48 minutes because of hunger."
-	exit 1
+	echo "You look at the key but you don't have any motivation to get up."
+	echo "What is wrong, why did u hesistate? You roll over on the ground, trying to sleep."
+	sleep 2
+	echo "In the morning you look if the key is still there. You find it in the exect position like yesterday."
+	echo "You slept not really bad, but you are hungry should you take up the key and go forward even if there is danger? (y/n)"
+	read key2
+	if [[ $key2 == "y" ]]; then
+        	echo "Key picked up."
+	else
+		echo "After 2 days you were so angry that you kicked the key out of the cell and you died after 4 days."
+		exit 1
+	fi
 fi
 
-echo "You go out of the cell and before you can realise it around you builds up a big forest."
-
+echo "You open the door and the only thing you see is darkness. You look around to find a torch
+or something that helps you to find out where you are."
+sleep 2
+echo "After a few steps you find a more open space with a broken wall. You can see the land around you with
+a beautiful moon deep in the night. You try to recognise where you are but not a chance. You move forward."
+sleep 2
+echo "The security room is before you. You see a short sword on the table with a bow."
+echo "Do you want to pick up the short sword and the bow?"
+read tutorial_items
+	if [[ $tutorial_items == "y" ]]; then
+		echo "Short Sword picked up."
+		echo "Bow picked up."
+	else
+		echo "You ."
+	fi
 sleep 2
 
 
@@ -235,7 +258,7 @@ else
 
 	read orc
 
-#Orc Battle
+	#Orc Battle
 
 		if [[ $orc == "y" ]]; then
         		echo "Fight starts."
