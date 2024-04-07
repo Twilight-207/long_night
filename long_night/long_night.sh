@@ -46,7 +46,7 @@ case $class in
                 hp=11
                 strength=6
                 agility=6
-                magic=12
+		magic=12
                 ;;
 esac
 
@@ -92,25 +92,31 @@ fi
 
 echo "You open the door and the only thing you see is darkness. You look around to find a torch
 or something that helps you to find out where you are."
-sleep 2
+sleep 5
 echo "After a few steps you find a more open space with a broken wall. You can see the land around you with
 a beautiful moon deep in the night. You try to recognise where you are but not a chance. You move forward."
-sleep 2
-echo "The security room is before you. You see a short sword on the table with a bow."
-echo "Do you want to pick up the short sword and the bow?"
+sleep 5
+echo "The security room is before you. You see a short sword on the table."
+echo "Do you want to pick up the short sword? (y/n)"
 read tutorial_items
 	if [[ $tutorial_items == "y" ]]; then
 		echo "Short Sword picked up."
-		echo "Bow picked up."
 	else
-		echo "You ."
+		echo "You took the sword anyway because of the danger you feel."
 	fi
 sleep 2
 
+tut_sword=$(( $RANDOM % 5 ))
+
+echo "As you go along the small passage you hear a growling."
+sleep 2
+echo "The nearer you come the louder is gets but you recognise the sound of this monster."
+sleep 2
+echo "No not a monster its a Boar, it has seen you!"
 
 #First battle
 
-echo "First fight. Prepare to fight. To start fight press: (y/n)"
+echo "First Battle. Prepare to fight. To start fight press: (y/n)"
 
 read start
 
@@ -118,6 +124,7 @@ if [[ $start == "y" ]]; then
         echo "Fight starts."
 else
         echo "You gave up."
+	echo "Boar ran you over."
         exit 1
 fi
 
@@ -125,8 +132,8 @@ echo "You attacked"
 
 sleep 2
 
-boar=$(( 10 - $strength ))
-rem_life=$(( $boar - $strength ))
+boar=$(( 10 - $strength - $tut_sword ))
+rem_life=$(( $boar - $strength - $tut_sword ))
 attack_boar=$(( $hp - $RANDOM % 5 ))
 life=$attackboar
 
@@ -178,7 +185,7 @@ if [[ $enter == "y" ]]; then
 			echo "Your current souls are $souls"
 			echo "You are healed. Your Health is now $hp"
 			echo "Do you want so invest your skill points? (y/n)"
-			echo "One level cost 100 Souls."
+			echo "One level costs 100 Souls."
 			read skilling
 
 		#Skill system
@@ -263,13 +270,13 @@ else
 		if [[ $orc == "y" ]]; then
         		echo "Fight starts."
 		else
-        		echo "You gave up."
+        		echo "You gave up. Orc crushed you."
         		exit 1
 		fi
 
 	echo "You attacked"
-	orc_life=$(( 30 - $strength ))
-	orc_rem_life=$(( $orc_life - $strength ))
+	orc_life=$(( 50 - $strength - $tut_sword ))
+	orc_rem_life=$(( $orc_life - $strength - $tut_sword ))
 	attack_orc=$(( $life - $RANDOM % 12 ))
 	sec_attack_orc=$(( $attack_orc - $RANDOM % 12 ))
 
@@ -309,35 +316,45 @@ fi
 
 #Tutorial END
 
+echo "You get out of the cave and look around."
 
 #START Story
+
 echo "You go along a road in the forest and find a woman lying unconscious on the ground."
 sleep 1
 echo "The woman wears a destroyed, old dress with fresh blood stains on it."
+echo "She seems rather clean and and not sick. May say even pretty."
 sleep 2
 echo "What do you want to do?
-	1. To wake the woman type: wake
-	2. To kidnap and rob the woman type: steal
-	3. To ignore the woman and go along your way type: ignore"
+	1. To wake the woman
+	2. To kidnap and rob the woman
+	3. To ignore the woman and go along your way"
 
 	read start_adventure
 
-		case $start_adventure in
-
-		1)
-			wake_woman="wake"
-		;;
-
-		2)
-			steal_woman="steal"
-		;;
-
-		3)
-			ignore_woman="ignore"
-		;;
-		esac
-
-
+while [[ $start_adventure = "1" ]]
+do
+	read -p "Press enter to confirm"
+	echo "You shake the woman but she doesn't open her eyes. You can feel her hearthbeat that means she is still alive."
+        sleep 2
+        echo "You decide to bring her to the cave."
+        echo "You decide to sleep until the woman wakes up"
+        break
+        done
+while [[ $start_adventure = "2" ]]
+do
+        read -p "Press enter to confirm"
+	echo "You took the woman on your shoulder and went to the cave."
+        echo "Inside the cave you search her bag and find some bread, 3 gold coins and a bow with no arrows."
+        echo "You wait until the woman wakes up because you mistrust."
+        break
+        done
+while [[ $start_adventure = "3" ]]
+do
+        read -p "Press enter to confirm"
+	echo "You go along the road and find a beautiful beast."
+        break
+        done
 
 
 
